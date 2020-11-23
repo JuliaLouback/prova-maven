@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="40.0" layoutY="64.0" text="Professor" textFill="DARKCYAN">
+         <font>
+            <Font name="Arial Bold" size="42.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Nome" layoutX="40.0" layoutY="230.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Separator layoutX="40.0" layoutY="153.0" prefHeight="29.0" prefWidth="1190.0" />
+      <Label layoutX="41.0" layoutY="190.0" text="Nome">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="790.0" layoutY="190.0" text="E-mail">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="415.0" layoutY="190.0" text="CPF">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Cpf" layoutX="415.0" layoutY="230.0" prefHeight="40.0" prefWidth="165.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Email" layoutX="790.0" layoutY="230.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="415.0" layoutY="290.0" text="Curso">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Cep" layoutX="40.0" layoutY="429.0" prefHeight="40.0" prefWidth="250.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="41.0" layoutY="389.0" text="CEP">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Rua" layoutX="602.0" layoutY="429.0" prefHeight="40.0" prefWidth="540.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="602.0" layoutY="389.0" text="Rua">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Numero" layoutX="324.0" layoutY="427.0" prefHeight="40.0" prefWidth="250.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Label layoutX="324.0" layoutY="389.0" text="Número">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="489.0" text="Bairro">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="417.0" layoutY="489.0" text="Cidade">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="792.0" layoutY="489.0" text="Estado">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Bairro" layoutX="40.0" layoutY="529.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Cidade" layoutX="417.0" layoutY="529.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="Estado" layoutX="792.0" layoutY="529.0" prefHeight="40.0" prefWidth="350.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Button fx:id="btnAdd" layoutX="862.0" layoutY="619.0" mnemonicParsing="false" onAction="#addFuncionario" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #28A745;" text="Adicionar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnBack" layoutX="1009.0" layoutY="619.0" mnemonicParsing="false" onAction="#BackButton" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #DC3545;" text="Voltar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Button>
+      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="30.0" prefWidth="1282.0" style="-fx-background-color: #e0e0e0; -fx-padding: 3px;" stylesheets="@../css/style.css">
+        <menus>
+          <Menu id="editar" mnemonicParsing="false" text="Uni Universidade">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#VoltarPainel" text="Inicial" />
+               </items></Menu>
+          <Menu mnemonicParsing="false" text="Sair">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#Sair" text="Logout" />
+               </items></Menu>
+        </menus>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </MenuBar>
+      <Label fx:id="labelChange" layoutX="40.0" layoutY="116.0" text="Adicionar">
+         <font>
+            <Font name="Arial" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="120.0" layoutY="190.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="870.0" layoutY="190.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="470.0" layoutY="190.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="250.0" layoutY="290.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="97.0" layoutY="389.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="417.0" layoutY="389.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="652.0" layoutY="389.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="108.0" layoutY="489.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="498.0" layoutY="489.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="872.0" layoutY="489.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="Data_nascimento" layoutX="40.0" layoutY="330.0" prefHeight="40.0" prefWidth="350.0" />
+      <Label layoutX="40.0" layoutY="290.0" text="Data de Nascimento">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="Curso" layoutX="415.0" layoutY="330.0" prefHeight="40.0" prefWidth="350.0" />
+      <ComboBox fx:id="Materia" layoutX="790.0" layoutY="330.0" prefHeight="40.0" prefWidth="350.0" />
+      <Label layoutX="790.0" layoutY="290.0" text="Matéria">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="880.0" layoutY="290.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="490.0" layoutY="290.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="NR" layoutX="604.0" layoutY="230.0" prefHeight="40.0" prefWidth="165.0">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="604.0" layoutY="190.0" text="NR">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="652.0" layoutY="190.0" text="*" textFill="#dc3545">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

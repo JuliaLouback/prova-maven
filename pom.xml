@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.universidade</groupId>
+  <artifactId>ProvaMaven</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Uni Universidade </name>
+  <description>Prova Projeto Maven</description>
+  
+  <dependencies>
+	<dependency>
+	    <groupId>com.microsoft.sqlserver</groupId>
+	    <artifactId>mssql-jdbc</artifactId>
+	    <version>8.2.2.jre8</version>
+	</dependency>
+	
+  </dependencies>
+  
+  <build>
+	<sourceDirectory>src/main/java</sourceDirectory>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.5.1</version>
+			<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+			</configuration>
+		</plugin>
+	</plugins>
+   </build>
+	
+</project>
