@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import entity.Endereco;
 import entity.Professor;
 import interfaces.IDao;
 import repository.CNXJDBC;
@@ -20,6 +21,9 @@ public class DaoProfessor extends CNXJDBC implements IDao{
 
 	private final String SQL_EXCLUI_PROFESSOR = "DELETE FROM Professor  WHERE Cpf = ?;";
 
+	private final String SQL_ALTERA_PROFESSOR = "UPDATE Professor SET NR = ?, Nome = ? ,Email = ?, Curso = ?, Data_nascimento = ?, Materia = ?"
+			+ "  WHERE Cpf = ?;";
+	
 	
 	@Override
 	public boolean adicionar(Object obj) {
@@ -27,6 +31,7 @@ public class DaoProfessor extends CNXJDBC implements IDao{
 		Professor professor = (Professor) obj;
 		
 		try (Connection conn = conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_PROFESSOR);) {
+			
 			pst.setString(1, professor.getCPF());
 			pst.setInt(2, professor.getNR());
 			pst.setString(3, professor.getNome());
@@ -47,7 +52,24 @@ public class DaoProfessor extends CNXJDBC implements IDao{
 
 	@Override
 	public boolean atualizar(Object obj) {
-		// TODO Auto-generated method stub
+		
+		Professor professor = (Professor) obj;
+		
+		try (Connection conn = conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_ALTERA_PROFESSOR);) {
+			pst.setInt(1, professor.getNR());
+			pst.setString(2, professor.getNome());
+			pst.setString(3, professor.getEmail());
+			pst.setString(4, professor.getCurso());
+			pst.setDate(5, Date.valueOf(professor.getData_nascimento()));
+			pst.setString(6, professor.getMateria());
+			pst.setString(7,  professor.getCPF());
+			pst.execute();
+				
+			return true;
+		} catch (SQLException e) {
+	    	System.out.println(e.getLocalizedMessage());
+		}
+		
 		return false;
 	}
 
@@ -98,6 +120,7 @@ public class DaoProfessor extends CNXJDBC implements IDao{
 				professor.setMateria(rs.getString("MATERIA"));
 				professor.setId_endereco(rs.getLong("ENDERECO_ID_ENDERECO"));
 				professor.setNR(rs.getInt("NR"));
+				professor.setEndereco((Endereco) new DaoEndereco().listarUm(String.valueOf(professor.getId_endereco())));
 				listaProfessores.add(professor);
 			}
 

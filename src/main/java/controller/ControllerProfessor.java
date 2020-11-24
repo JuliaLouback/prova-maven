@@ -17,17 +17,12 @@ public class ControllerProfessor implements ICrud{
 	
 	@Override
 	public boolean adicionar(Object obj) {
-		
-		Professor professor = (Professor) obj;
-		
-		return daoProfessor.adicionar(professor);
+		return daoProfessor.adicionar(obj);
 	}
-
 
 	@Override
 	public boolean atualizar(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+		return daoProfessor.atualizar(obj);
 	}
 
 	@Override
@@ -37,7 +32,6 @@ public class ControllerProfessor implements ICrud{
 
 	@Override
 	public Object listarUm(String obj) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

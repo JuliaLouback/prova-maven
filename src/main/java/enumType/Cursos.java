@@ -18,6 +18,14 @@ public enum Cursos {
         return Nome;
    }
 	
+   public static Cursos listarUm(String text) {
+	    for (Cursos e : values()) {
+	        if (e.Nome.equals(text)) {
+	            return e;
+	        }
+	    }
+	    return null;
+	}
 	
 	
 }

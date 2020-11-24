@@ -16,37 +16,31 @@ public class ControllerEndereco implements ICrud {
 	}
 	
 	public long adicionarLong(Endereco endereco) {
-		
 		return ((DaoEndereco) daoEndereco).adicionarEndereco(endereco);
 	}
 
 	@Override
 	public boolean adicionar(Object obj) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean atualizar(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+		return daoEndereco.atualizar(obj);
 	}
 
 	@Override
 	public boolean excluir(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+		return daoEndereco.excluir(obj);
 	}
 
 	@Override
 	public Object listarUm(String obj) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList listar() {
-		// TODO Auto-generated method stub
 		return null;
 	} 
 }

@@ -17,4 +17,13 @@ public enum Materias {
    public String toString() {
         return Nome;
    }
+	
+   public static Materias listarUm(String text) {
+	    for (Materias e : values()) {
+	        if (e.Nome.equals(text)) {
+	            return e;
+	        }
+	    }
+	    return null;
+	}
 }

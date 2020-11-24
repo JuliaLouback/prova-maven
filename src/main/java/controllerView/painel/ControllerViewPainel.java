@@ -48,8 +48,8 @@ public class ControllerViewPainel {
 
 	    @FXML
 	    void btnIrProfessor(ActionEvent event) {
-	    	Stage stage = (Stage) btnAluno.getScene().getWindow(); 
-		    ControllerViewListaProfessor mudarTela = new ControllerViewListaProfessor(new ControllerProfessor(new DaoProfessor()));
+	    	Stage stage = (Stage) btnProfessor.getScene().getWindow(); 
+		    ControllerViewListaProfessor mudarTela = new ControllerViewListaProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
 		    mudarTela.start(stage);
 	    }
 	    

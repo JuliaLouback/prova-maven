@@ -95,16 +95,17 @@ public class ControllerViewCadastroProfessor implements Initializable{
     
     private ValidacaoEmail validacaoEmail = new ValidacaoEmail();
     
+    private Professor professorEditar = new Professor();
+    
     public ControllerViewCadastroProfessor(ICrud controllerProfessor, ICrud controllerEndereco) {
     	this.controllerProfessor = controllerProfessor;
     	this.controllerEndereco = controllerEndereco;
     }
     
-    
     @FXML
     void BackButton(ActionEvent event) {
     	Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-	    ControllerViewPainel mudarTela = new ControllerViewPainel();
+	    ControllerViewListaProfessor mudarTela = new ControllerViewListaProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
 	    mudarTela.start(stage);
     }
 
@@ -142,17 +143,32 @@ public class ControllerViewCadastroProfessor implements Initializable{
 		    	professor.setEmail(Email.getText());
 		    	professor.setCurso(Curso.getValue().toString());
 		    	professor.setMateria(Materia.getValue().toString());
-		    	professor.setId_endereco(((ControllerEndereco) controllerEndereco).adicionarLong(endereco));
 				professor.setData_nascimento(Data_nascimento.getValue());
-		    	professor.setEndereco(endereco);
-	    
-		    	controllerProfessor.adicionar(professor);
-		    	
-		    	showAlert.sucessoAlert("Professor adicionado com sucesso!");
-		    	
-		    	Stage stage = (Stage) btnAdd.getScene().getWindow(); 
-			    ControllerViewPainel mudarTela = new ControllerViewPainel();
-			    mudarTela.start(stage);
+				
+				if(professorEditar == null) {
+					professor.setId_endereco(((ControllerEndereco) controllerEndereco).adicionarLong(endereco));					
+			    	professor.setEndereco(endereco);
+		    
+			    	if(controllerProfessor.adicionar(professor)){
+			    		showAlert.sucessoAlert("Professor adicionado com sucesso!");
+
+			    		Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+					    ControllerViewListaProfessor mudarTela = new ControllerViewListaProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
+					    mudarTela.start(stage);
+			    	}
+				} else {
+					professor.setId_endereco(professorEditar.getId_endereco());
+					endereco.setId_endereco(professorEditar.getId_endereco());
+			    	professor.setEndereco(endereco);
+		    
+			    	if(controllerProfessor.atualizar(professor) && controllerEndereco.atualizar(endereco)) {
+			    		showAlert.sucessoAlert("Professor editado com sucesso!");
+
+			    		Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+					    ControllerViewListaProfessor mudarTela = new ControllerViewListaProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
+					    mudarTela.start(stage);
+			    	}
+				}
     		} 
     		else {
         		showAlert.erroAlert("CPF e/ou E-mail iválidos!");
@@ -175,8 +191,7 @@ public class ControllerViewCadastroProfessor implements Initializable{
 	}
 
     public void setLabelText(Professor professor) {
-		 this.labelChange.setText("Editar Professor"); 
-
+    	this.professorEditar = professor;
     }
     
 	@Override
@@ -211,6 +226,31 @@ public class ControllerViewCadastroProfessor implements Initializable{
 		
         MaskFieldUtil.cepField(this.Cep);
         MaskFieldUtil.cpfField(this.Cpf);
+        
+        if(professorEditar != null) {
+        	preencherCampos();
+        }
+	}
+	
+	private void preencherCampos() {
+		Nome.setText(professorEditar.getNome());
+		Cpf.setText(professorEditar.getCPF());
+		NR.setText(String.valueOf(professorEditar.getNR()));
+		Data_nascimento.setValue(professorEditar.getData_nascimento());
+		Email.setText(professorEditar.getEmail());
+		Curso.setValue(Cursos.listarUm(professorEditar.getCurso()));
+		Materia.setValue(Materias.listarUm(professorEditar.getMateria()));
+		Cep.setText(professorEditar.getEndereco().getCep());
+		Numero.setText(String.valueOf(professorEditar.getEndereco().getNumero()));
+		Rua.setText(professorEditar.getEndereco().getRua());
+		Bairro.setText(professorEditar.getEndereco().getBairro());
+		Cidade.setText(professorEditar.getEndereco().getCidade());
+		Estado.setText(professorEditar.getEndereco().getEstado());
+
+		labelChange.setText("Editar Professor");
+		Cpf.setEditable(false);
+		btnAdd.setText("Editar");
+		
 	}
 	
 	public void start(Stage primaryStage) {
@@ -218,6 +258,8 @@ public class ControllerViewCadastroProfessor implements Initializable{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/professor/CadastroProfessor.fxml"));
 			ControllerViewCadastroProfessor controller = new ControllerViewCadastroProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
 	        loader.setController(controller);
+            controller.setLabelText(null);
+
 	        AnchorPane pane = loader.load();
 	        
 			Scene scene = new Scene(pane);

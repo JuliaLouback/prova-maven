@@ -52,11 +52,13 @@ public class ControllerViewListaProfessor implements Initializable {
     private TableColumn<Professor, String> Materia;
     
     private ICrud controllerProfessor;
+    private ICrud controllerEndereco;
     
     private ShowAlert showAlert = new ShowAlert();
 
-    public ControllerViewListaProfessor(ICrud controllerProfessor) {
+    public ControllerViewListaProfessor(ICrud controllerProfessor, ICrud controllerEndereco) {
     	this.controllerProfessor = controllerProfessor;
+    	this.controllerEndereco = controllerEndereco;
     }
 
     @FXML
@@ -110,28 +112,27 @@ public class ControllerViewListaProfessor implements Initializable {
                             Professor professor = getTableView().getItems().get(getIndex());
                             
                             try {
-	                       
-	                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/professor/CadastroProfessor.fxml"));
-	                    	    ControllerViewCadastroProfessor controller = new ControllerViewCadastroProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
-	                	        controller.setLabelText(professor);
-	                    	    
-	                    	    loader.setController(controller);
-	                	        AnchorPane pane = loader.load();
-	                	        
-	                	        Stage stage = new Stage();
+                            	FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/professor/CadastroProfessor.fxml"));
+                    			ControllerViewCadastroProfessor controller = new ControllerViewCadastroProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
+
+	                            loader.setController(controller);
+	                            controller.setLabelText(professor);
+	                            AnchorPane pane = loader.load();
+	                    
+	                            Stage stage = new Stage();
 	                            stage.setScene(new Scene(pane));
 	                            stage.setTitle("Editar Professor - Uni Universidade");
 	                            stage.centerOnScreen();
-	                            stage.getIcons().add(new Image("/img/universidade.png"));
+	                			stage.getIcons().add(new Image("/img/universidade.png"));
+	                			stage.setResizable(false);
 	                            stage.show();
 	                            
 	                            Stage stages = (Stage) btn.getScene().getWindow();
- 	                            stages.close();
-	                            
+	                            stages.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            
+	                                                     
                         });
                        
                         btn.setPrefWidth(280);
@@ -176,7 +177,7 @@ public class ControllerViewListaProfessor implements Initializable {
                             Professor professor = getTableView().getItems().get(getIndex());
                             
                             if(showAlert.confirmationAlert("Excluir Professor", "Tem certeza que deseja excluir" +professor.getNome()+" ?")) {
-                            	if(controllerProfessor.excluir(professor)) {
+                            	if(controllerEndereco.excluir(professor.getEndereco()) && controllerProfessor.excluir(professor)) {
                             		showAlert.sucessoAlert("Professor excluído com sucesso!");
                             		listar();
                             	} else {
@@ -213,7 +214,7 @@ public class ControllerViewListaProfessor implements Initializable {
 	public void start(Stage primaryStage) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/professor/ListaProfessor.fxml"));
-			ControllerViewListaProfessor controller = new ControllerViewListaProfessor(new ControllerProfessor(new DaoProfessor()));
+			ControllerViewListaProfessor controller = new ControllerViewListaProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
 	        loader.setController(controller);
 	        AnchorPane pane = loader.load();
 	        
