@@ -8,47 +8,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import entity.Professor;
+import interfaces.IDao;
 import repository.CNXJDBC;
 
-public class DaoProfessor{
+public class DaoProfessor extends CNXJDBC implements IDao{
 
 	private final String SQL_SELECIONA_PROFESSOR = "SELECT * FROM Professor order by Nome";
 
 	private final String SQL_INSERE_PROFESSOR = "INSERT INTO Professor (Cpf,NR,Nome,Email,Curso,Data_nascimento,Materia," + 
 		"Endereco_Id_endereco) VALUES (?,?,?,?,?,?,?,?);";
-		
-	public ArrayList<Professor> listar() {
-		
-		ArrayList<Professor> listaProfessores = new ArrayList<Professor>();
 
-		Professor professor;
-		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_PROFESSOR); ResultSet rs = pst.executeQuery();) {
-			while (rs.next()) {
-				professor = new Professor();
-				
-				professor.setCPF(rs.getString("CPF"));
-				professor.setNome(rs.getString("NOME"));
-				professor.setEmail(rs.getString("EMAIL"));
-				professor.setData_nascimento(rs.getDate("DATA_NASCIMENTO").toLocalDate());
-				professor.setCurso(rs.getString("CURSO"));
-				professor.setMateria(rs.getString("MATERIA"));
-				professor.setId_endereco(rs.getLong("ENDERECO_ID_ENDERECO"));
-				professor.setNR(rs.getInt("NR"));
-								
-				listaProfessores.add(professor);
-			}
+	private final String SQL_EXCLUI_PROFESSOR = "DELETE FROM Professor  WHERE Cpf = ?;";
 
-		} catch (SQLException e) {
-			System.out.println("Erro ao executar o Statement" + e.toString());
-		} catch (Exception ex) {
-			System.out.println(ex.toString());
-		}
+	
+	@Override
+	public boolean adicionar(Object obj) {
 		
-		return listaProfessores;
-	}
-
-	public boolean adicionar(Professor professor) {
-		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_PROFESSOR);) {
+		Professor professor = (Professor) obj;
+		
+		try (Connection conn = conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_INSERE_PROFESSOR);) {
 			pst.setString(1, professor.getCPF());
 			pst.setInt(2, professor.getNR());
 			pst.setString(3, professor.getNome());
@@ -67,17 +45,73 @@ public class DaoProfessor{
 		return false;
 	}
 
+	@Override
+	public boolean atualizar(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean excluir(Object obj) {
+		
+		Professor professor = (Professor) obj;
+		
+		try (Connection conn = this.conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_EXCLUI_PROFESSOR);) {
+			pst.setString(1, professor.getCPF());
+			
+			boolean resultado = false;
+			
+			int rowsUpdated = pst.executeUpdate();
+			if (rowsUpdated > 0) {
+				resultado = true;
+			}
+			
+			return resultado;
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statment " + e.toString());
+		}
+		
+		return false;
+	}
+
+	@Override
+	public Object listarUm(String obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList listar() {
+		
+		ArrayList<Professor> listaProfessores = new ArrayList<Professor>();
+
+		Professor professor;
+		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_PROFESSOR); ResultSet rs = pst.executeQuery();) {
+			while (rs.next()) {
+				professor = new Professor();
+				
+				professor.setCPF(rs.getString("CPF"));
+				professor.setNome(rs.getString("NOME"));
+				professor.setEmail(rs.getString("EMAIL"));
+				professor.setData_nascimento(rs.getDate("DATA_NASCIMENTO").toLocalDate());
+				professor.setCurso(rs.getString("CURSO"));
+				professor.setMateria(rs.getString("MATERIA"));
+				professor.setId_endereco(rs.getLong("ENDERECO_ID_ENDERECO"));
+				professor.setNR(rs.getInt("NR"));
+				listaProfessores.add(professor);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statement" + e.toString());
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+		}
+		
+		return listaProfessores;
+	}
+
+		
 	
-	public boolean editar() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean excluir() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	
 	
 }

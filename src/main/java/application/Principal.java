@@ -1,10 +1,8 @@
 package application;
 
-import controller.ControllerEndereco;
-import controller.ControllerProfessor;
-import controllerView.ControllerViewCadastroProfessor;
-import dao.DaoEndereco;
-import dao.DaoProfessor;
+import java.io.IOException;
+
+import controllerView.painel.ControllerViewPainel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,27 +12,22 @@ import javafx.stage.Stage;
 
 public class Principal extends Application{
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage) {
 		try {
-		    FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/professor/CadastroProfessor.fxml"));
-
-	        ControllerViewCadastroProfessor controller = new ControllerViewCadastroProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
-	        
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/painel/Painel.fxml"));
+	        ControllerViewPainel controller = new ControllerViewPainel();
 	        loader.setController(controller);
-	        
 	        AnchorPane pane = loader.load();
-		        
+	        
 			Scene scene = new Scene(pane);
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Cadastro Professor - Uni Universidade");
-			primaryStage.setResizable(false);
+			primaryStage.setTitle("Painel - Uni Universidade");
 			primaryStage.centerOnScreen();
 			primaryStage.getIcons().add(new Image("/img/universidade.png"));
 			primaryStage.show();
 			
-		} catch (Exception e) {
-			e.printStackTrace();	
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
