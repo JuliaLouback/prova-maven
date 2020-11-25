@@ -11,6 +11,7 @@ import controllerView.painel.ControllerViewPainel;
 import dao.DaoEndereco;
 import dao.DaoProfessor;
 import entity.Professor;
+import enumType.Cursos;
 import interfaces.ICrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,6 +53,9 @@ public class ControllerViewListaProfessor implements Initializable {
     @FXML
     private TableColumn<Professor, String> Materia;
     
+    @FXML
+    private ComboBox<Cursos> TxtCurso;
+    
     private ICrud controllerProfessor;
     private ICrud controllerEndereco;
     
@@ -67,6 +72,19 @@ public class ControllerViewListaProfessor implements Initializable {
 	    ControllerViewCadastroProfessor mudarTela = new ControllerViewCadastroProfessor(new ControllerProfessor(new DaoProfessor()), new ControllerEndereco(new DaoEndereco()));
 	    mudarTela.start(stage);
     }
+    
+    @FXML
+    void AddPesquisa(ActionEvent event) {
+    	ArrayList<Professor> listas = controllerProfessor.pesquisa(TxtCurso.getValue().toString());
+        ObservableList<Professor> lista = FXCollections.observableArrayList(listas);
+	    tabela.setItems(lista);
+    }
+    
+    @FXML
+    void AddLimpar(ActionEvent event) {
+    	TxtCurso.setValue(null);
+    	listar();
+    }
 	
 	 @FXML
 	 void VoltarPainel(ActionEvent event) {
@@ -77,7 +95,10 @@ public class ControllerViewListaProfessor implements Initializable {
 
 	 @FXML
 	 void Sair(ActionEvent event) {
-			
+		if(showAlert.confirmationAlert("Logout", "Tem certeza que deseja sair do sistema?")) {
+    		Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+    		stage.close();
+    	}
 	 }
 	 
 	 @Override
@@ -86,6 +107,8 @@ public class ControllerViewListaProfessor implements Initializable {
 		Cpf.setCellValueFactory(new PropertyValueFactory<Professor, String>("CPF"));
 		Curso.setCellValueFactory(new PropertyValueFactory<Professor, String>("Curso"));
 		Materia.setCellValueFactory(new PropertyValueFactory<Professor, String>("Materia"));
+		TxtCurso.getItems().setAll(Cursos.values());
+
 		addButtonToTable();
 	    addButtonExcluir();
 		listar();
@@ -176,8 +199,8 @@ public class ControllerViewListaProfessor implements Initializable {
                         	
                             Professor professor = getTableView().getItems().get(getIndex());
                             
-                            if(showAlert.confirmationAlert("Excluir Professor", "Tem certeza que deseja excluir" +professor.getNome()+" ?")) {
-                            	if(controllerEndereco.excluir(professor.getEndereco()) && controllerProfessor.excluir(professor)) {
+                            if(showAlert.confirmationAlert("Excluir Professor", "Tem certeza que deseja excluir " +professor.getNome()+" ?")) {
+                            	if(controllerProfessor.excluir(professor) && controllerEndereco.excluir(professor.getEndereco())) {
                             		showAlert.sucessoAlert("Professor excluído com sucesso!");
                             		listar();
                             	} else {

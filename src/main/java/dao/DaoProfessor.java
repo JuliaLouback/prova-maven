@@ -97,18 +97,12 @@ public class DaoProfessor extends CNXJDBC implements IDao{
 	}
 
 	@Override
-	public Object listarUm(String obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ArrayList listar() {
 		
 		ArrayList<Professor> listaProfessores = new ArrayList<Professor>();
 
 		Professor professor;
-		try (Connection conn = new CNXJDBC().conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_PROFESSOR); ResultSet rs = pst.executeQuery();) {
+		try (Connection conn = conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_PROFESSOR); ResultSet rs = pst.executeQuery();) {
 			while (rs.next()) {
 				professor = new Professor();
 				
@@ -126,6 +120,41 @@ public class DaoProfessor extends CNXJDBC implements IDao{
 
 		} catch (SQLException e) {
 			System.out.println("Erro ao executar o Statement" + e.toString());
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+		}
+		
+		return listaProfessores;
+	}
+
+	@Override
+	public ArrayList pesquisa(String obj) {
+		
+		String SQL_SELECIONA_PESQUISA = "SELECT * FROM Professor WHERE Curso = '"+obj+"';";
+
+		ArrayList<Professor> listaProfessores = new ArrayList<Professor>();
+
+		Professor professor;
+		try (Connection conn = conexaoBanco(); PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_PESQUISA); ResultSet rs = pst.executeQuery();) {
+			while (rs.next()) {
+				professor = new Professor();
+				
+				professor.setCPF(rs.getString("CPF"));
+				professor.setNome(rs.getString("NOME"));
+				professor.setEmail(rs.getString("EMAIL"));
+				professor.setData_nascimento(rs.getDate("DATA_NASCIMENTO").toLocalDate());
+				professor.setCurso(rs.getString("CURSO"));
+				professor.setMateria(rs.getString("MATERIA"));
+				professor.setId_endereco(rs.getLong("ENDERECO_ID_ENDERECO"));
+				professor.setNR(rs.getInt("NR"));
+				professor.setEndereco((Endereco) new DaoEndereco().listarUm(String.valueOf(professor.getId_endereco())));
+				listaProfessores.add(professor);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar o Statement" + e.toString());
+			System.out.println("Erro ao executar o Statement" + e.getMessage());
+
 		} catch (Exception ex) {
 			System.out.println(ex.toString());
 		}

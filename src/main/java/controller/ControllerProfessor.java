@@ -31,13 +31,13 @@ public class ControllerProfessor implements ICrud{
 	}
 
 	@Override
-	public Object listarUm(String obj) {
-		return null;
+	public ArrayList listar() {
+		return daoProfessor.listar();
 	}
 
 	@Override
-	public ArrayList listar() {
-		return daoProfessor.listar();
+	public ArrayList pesquisa(String obj) {
+		return daoProfessor.pesquisa(obj);
 	} 
 
 }

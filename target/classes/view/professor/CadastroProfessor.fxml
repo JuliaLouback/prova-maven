@@ -16,7 +16,7 @@
 
 <AnchorPane prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="40.0" layoutY="64.0" text="Professor" textFill="DARKCYAN">
+      <Label layoutX="40.0" layoutY="64.0" text="Professor" textFill="#1565c0">
          <font>
             <Font name="Arial Bold" size="42.0" />
          </font>
@@ -164,7 +164,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="108.0" layoutY="483.0" text="*" textFill="#dc3545">
+      <Label layoutX="108.0" layoutY="490.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -179,7 +179,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="119.0" layoutY="583.0" text="*" textFill="#dc3545">
+      <Label layoutX="119.0" layoutY="590.0" text="*" textFill="#dc3545">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>

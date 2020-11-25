@@ -35,12 +35,13 @@ public class ControllerEndereco implements ICrud {
 	}
 
 	@Override
-	public Object listarUm(String obj) {
+	public ArrayList listar() {
 		return null;
 	}
 
 	@Override
-	public ArrayList listar() {
+	public ArrayList pesquisa(String obj) {
+		// TODO Auto-generated method stub
 		return null;
 	} 
 }

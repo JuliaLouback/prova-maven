@@ -103,7 +103,6 @@ public class DaoEndereco extends CNXJDBC implements IDao{
 		return false;
 	}
 
-	@Override
 	public Object listarUm(String obj) {
 		
 		int id_endereco = Integer.parseInt(obj);
@@ -112,7 +111,7 @@ public class DaoEndereco extends CNXJDBC implements IDao{
 		
 		Endereco endereco = new Endereco();
 		
-		try (Connection conn = new CNXJDBC().conexaoBanco();PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_ENDERECO); ResultSet rs = pst.executeQuery();) {
+		try (Connection conn = conexaoBanco();PreparedStatement pst = conn.prepareStatement(SQL_SELECIONA_ENDERECO); ResultSet rs = pst.executeQuery();) {
 			
 			while (rs.next()) {
 				endereco.setId_endereco((rs.getInt("ID_ENDERECO")));
@@ -133,6 +132,12 @@ public class DaoEndereco extends CNXJDBC implements IDao{
 
 	@Override
 	public ArrayList listar() {
+		return null;
+	}
+
+	@Override
+	public ArrayList pesquisa(String obj) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

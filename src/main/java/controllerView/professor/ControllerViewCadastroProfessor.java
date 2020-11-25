@@ -111,7 +111,10 @@ public class ControllerViewCadastroProfessor implements Initializable{
 
     @FXML
     void Sair(ActionEvent event) {
-
+    	if(showAlert.confirmationAlert("Logout", "Tem certeza que deseja sair do sistema?")) {
+    		Stage stage = (Stage) btnAdd.getScene().getWindow(); 
+    		stage.close();
+    	}
     }
 
     @FXML
@@ -247,7 +250,7 @@ public class ControllerViewCadastroProfessor implements Initializable{
 		Cidade.setText(professorEditar.getEndereco().getCidade());
 		Estado.setText(professorEditar.getEndereco().getEstado());
 
-		labelChange.setText("Editar Professor");
+		labelChange.setText("Editar");
 		Cpf.setEditable(false);
 		btnAdd.setText("Editar");
 		

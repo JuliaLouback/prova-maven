@@ -8,8 +8,6 @@ public class CNXJDBC {
 		String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=uni_universidade;";
 		
 		try {
-			System.out.println("aee");
-
 			return DriverManager.getConnection(connectionUrl,"sa", "");
 		} catch (SQLException e) {
 			throw new RuntimeException();

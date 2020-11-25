@@ -3,8 +3,10 @@
 }
 
 .menu-bar .label {
-   -fx-text-fill: #008b8b;
+   -fx-text-fill: #1565c0;
 }
+
+
 
 .menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing, .label {
     -fx-background: #c7c7c7 ;
@@ -24,7 +26,7 @@
 }
 .table-view .column-header,
 .table-view .column-header-background .filler {
-    -fx-background-color:  #008b8b; 
+    -fx-background-color:  #1565c0; 
     -fx-opacity: 0.9;
 }
 .table-view .column-header .label{

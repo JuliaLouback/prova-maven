@@ -15,14 +15,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="53.0" layoutY="320.0" prefHeight="460.0" prefWidth="360.0" style="-fx-border-color: darkcyan;">
+      <Pane layoutX="53.0" layoutY="320.0" prefHeight="460.0" prefWidth="360.0" style="-fx-border-color: #1565c0;">
          <children>
             <ImageView fitHeight="249.0" fitWidth="265.0" layoutX="50.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/reading-book.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnAluno" layoutX="55.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnIrAluno" prefHeight="82.0" prefWidth="245.0" style="-fx-border-color: darkcyan; -fx-background-color: #ffffff;" text="Alunos" textFill="DARKCYAN">
+            <Button fx:id="btnAluno" layoutX="55.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnIrAluno" prefHeight="82.0" prefWidth="245.0" style="-fx-border-color: #1565c0; -fx-background-color: #ffffff;" text="Alunos" textFill="#1565c0">
                <font>
                   <Font name="Arial" size="28.0" />
                </font>
@@ -41,7 +41,7 @@
                </items></Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="220.0" layoutY="111.0" text="Uni Universidade" textFill="DARKCYAN">
+      <Label layoutX="220.0" layoutY="111.0" text="Uni Universidade" textFill="#1565c0">
          <font>
             <Font name="Arial Bold" size="69.0" />
          </font>
@@ -57,14 +57,14 @@
             <Image url="@../../img/universidade.png" />
          </image>
       </ImageView>
-      <Pane layoutX="460.0" layoutY="320.0" prefHeight="460.0" prefWidth="360.0" style="-fx-border-color: darkcyan;">
+      <Pane layoutX="460.0" layoutY="320.0" prefHeight="460.0" prefWidth="360.0" style="-fx-border-color: #1565c0;">
          <children>
             <ImageView fitHeight="214.0" fitWidth="210.0" layoutX="75.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/education.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnProfessor" layoutX="55.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnIrProfessor" prefHeight="82.0" prefWidth="245.0" style="-fx-border-color: darkcyan; -fx-background-color: #ffffff;" text="Professores" textFill="DARKCYAN">
+            <Button fx:id="btnProfessor" layoutX="55.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnIrProfessor" prefHeight="82.0" prefWidth="245.0" style="-fx-border-color: #1565c0; -fx-background-color: #ffffff;" text="Professores" textFill="#1565c0">
                <font>
                   <Font name="Arial" size="28.0" />
                </font>
@@ -74,14 +74,14 @@
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="860.0" layoutY="320.0" prefHeight="460.0" prefWidth="360.0" style="-fx-border-color: darkcyan;">
+      <Pane layoutX="860.0" layoutY="320.0" prefHeight="460.0" prefWidth="360.0" style="-fx-border-color: #1565c0;">
          <children>
             <ImageView fitHeight="214.0" fitWidth="228.0" layoutX="70.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/worker.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnFuncionario" layoutX="55.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnIrFuncionario" prefHeight="82.0" prefWidth="245.0" style="-fx-border-color: darkcyan; -fx-background-color: #ffffff;" text="Funcionários" textFill="DARKCYAN">
+            <Button fx:id="btnFuncionario" layoutX="55.0" layoutY="324.0" mnemonicParsing="false" onAction="#btnIrFuncionario" prefHeight="82.0" prefWidth="245.0" style="-fx-border-color: #1565c0; -fx-background-color: #ffffff;" text="Funcionários" textFill="#1565c0">
                <font>
                   <Font name="Arial" size="28.0" />
                </font>

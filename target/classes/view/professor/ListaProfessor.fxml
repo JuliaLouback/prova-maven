@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -26,24 +28,44 @@
                </items></Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="40.0" layoutY="64.0" text="Lista de Professores" textFill="DARKCYAN">
+      <Label layoutX="40.0" layoutY="64.0" text="Lista de Professores" textFill="#1565c0">
          <font>
             <Font name="Arial Bold" size="42.0" />
          </font>
       </Label>
       <Separator layoutX="40.0" layoutY="127.0" prefHeight="0.0" prefWidth="1190.0" />
-      <Button fx:id="btnAdd" layoutX="1095.0" layoutY="160.0" mnemonicParsing="false" onAction="#AddProfessor" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: darkcyan;" text="Cadastrar" textFill="WHITE">
+      <Button fx:id="btnAdd" layoutX="1095.0" layoutY="160.0" mnemonicParsing="false" onAction="#AddProfessor" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color: #1565c0;" text="Cadastrar" textFill="WHITE">
          <font>
             <Font name="Arial" size="22.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <TableView fx:id="tabela" layoutX="40.0" layoutY="250.0" prefHeight="580.0" prefWidth="1190.0" stylesheets="@../../css/style.css">
         <columns>
           <TableColumn fx:id="Nome" minWidth="200.0" prefWidth="242.40000534057617" text="Nome" />
           <TableColumn fx:id="Cpf" minWidth="120.0" prefWidth="208.0" text="CPF" />
             <TableColumn fx:id="Curso" minWidth="200.0" prefWidth="280.80010986328125" text="Curso" />
-            <TableColumn fx:id="Materia"  minWidth="200.0" prefWidth="207.20001220703125" text="Matéria" />
+            <TableColumn fx:id="Materia" minWidth="200.0" prefWidth="207.20001220703125" text="Matéria" />
         </columns>
       </TableView>
+      <ComboBox fx:id="TxtCurso" layoutX="40.0" layoutY="164.0" prefHeight="46.0" prefWidth="400.0" promptText="Selecione o Curso" />
+      <Button layoutX="460.0" layoutY="165.0" mnemonicParsing="false" onAction="#AddPesquisa" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #9e9e9e;" text="Pesquisar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="600.0" layoutY="165.0" mnemonicParsing="false" onAction="#AddLimpar" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #1e88e5;" text="Limpar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="22.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
