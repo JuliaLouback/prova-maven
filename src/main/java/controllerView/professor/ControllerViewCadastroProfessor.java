@@ -174,7 +174,7 @@ public class ControllerViewCadastroProfessor implements Initializable{
 				}
     		} 
     		else {
-        		showAlert.erroAlert("CPF e/ou E-mail iválidos!");
+        		showAlert.erroAlert("CPF e/ou E-mail inválidos!");
         	}
     	} 
     	else {

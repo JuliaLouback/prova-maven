@@ -170,7 +170,7 @@ public class ControllerViewCadastroAluno implements Initializable{
 				}
     		} 
     		else {
-        		showAlert.erroAlert("CPF e/ou E-mail iválidos!");
+        		showAlert.erroAlert("CPF e/ou E-mail inválidos!");
         	}
     	} 
     	else {
